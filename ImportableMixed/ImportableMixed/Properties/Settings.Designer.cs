@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Importable.Properties
+namespace ImportableMixed.Properties
 {
 
 
