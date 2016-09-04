@@ -5,3 +5,5 @@ This programm reads all 15 minutes a CSV-File in the CSV-File are tire-informati
 ###Background
 The new CSV-File is going to be uploaded to our Server where our Online-Shop imports them und update all 15 minutes the new tire informations. In our Online-Shop the different tire-informations are absolut defined. That means the first colummn in the csv files is for example the Thumbnail-Picture and the second is the Article Name and so on.
 
+###Project-Structure
+Inside the ImportableMixed there is the Console-Application and the Windows Form Apllication.
