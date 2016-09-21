@@ -289,12 +289,15 @@ namespace ImportableMixed
                     }
                     */
                     #endregion
-                    if (fill.article_id.Substring(0, 1).ToLower().Equals("w"))
+                    if (fill.article_id.Substring(0, 1).ToLower().Equals("w") && (fill.manufacturer.ToLower().Equals("tracmax") || fill.manufacturer.ToLower().Equals("riken") || fill.manufacturer.ToLower().Equals("nexen")) || fill.manufacturer.ToLower().Equals("pace") || fill.manufacturer.ToLower().Equals("toledo"))
                     {
-                        fill.type = "PKW Winter-Reifen";
+                        if (Int32.Parse(fill.availability) > 15)
+                        {
+                            fill.type = "PKW Winter-Reifen";
 
-                        t[inputedElements] = fill;
-                        inputedElements++;
+                            t[inputedElements] = fill;
+                            inputedElements++;
+                        }
                     }
                     else
                         continue;
