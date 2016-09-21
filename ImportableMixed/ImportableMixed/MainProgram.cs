@@ -28,8 +28,6 @@ namespace ImportableMixed
         static char DELIMITER = '|';
         static char WRITEDELIMITER = ';';
         static Tire[] tires;
-        static Tire[] lastImp;
-        static string lastImportFileName = "";
 
         public static void Main(string[] args)
         {
@@ -39,14 +37,23 @@ namespace ImportableMixed
             Application.Run(new Form1());
              */
 
-            /* For Consolen-Application comment out this lines
+            /* For Consolen-Application comment out this lines*/
+
+            /* !!! NUR WINTERREIFEN !!!! */
             Console.SetBufferSize(300, 400);
-            ReadFromCsv(FILENAME, false, true);
+            ReadFromCsv(FILENAME, true);
+
+            if (tires.Length > 0)
+                Console.WriteLine("Erfolgreiches Einlesen der Dateien in den Array");
+
             CheckWidth();
+                Console.WriteLine("Erfolgreiches Checken der Width");
+
             CalculationPrice(tires);
-            Write(false, NEWFILENAME);
+            Write(NEWFILENAME);
+            Console.WriteLine("Finished Writign");
             Console.ReadLine();
-             */
+             
         }
 
         public static Tire[] Tires
@@ -96,25 +103,15 @@ namespace ImportableMixed
         /// Die eingelesenen und aufbereiteten Reifeninformationen werden in eine csv-Datei gespeicher!
         /// </summary>
         /// <param name="tires">Array der eingelesenen Reifen</param>
-        public static void Write(bool timestamp, string csvFolder)
+        public static void Write(string csvFolder)
         {
             //Das derzeitige Verzeichniss suchen
             string filePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string folderPath = System.IO.Path.GetDirectoryName(csvFolder);
             StreamWriter file, time;
 
-            //Falls Importstempel drauf soll
-            if (timestamp == true)
-            {
-                time = new StreamWriter((csvFolder + "\\" + DateTime.Now.ToShortDateString() + ".txt"), false, Encoding.UTF8);
-                file = new StreamWriter((csvFolder + "\\" + "Export_" + DateTime.Now.ToShortDateString() + ".csv"), false, Encoding.UTF8);
-            }
-            else
-            {
                 //Datei im selben Verzeichnis erstellen
-                file = new StreamWriter((csvFolder + "\\" + NEWFILENAME), false, Encoding.UTF8);
-            }
-
+                file = new StreamWriter((csvFolder), false, Encoding.UTF8);
             try
             {
                 for (int i = 0; i < tires.Length; i++)
@@ -179,7 +176,7 @@ namespace ImportableMixed
         /// Daten aus der CSV-Datei ins Programm laden
         /// </summary>
         /// <returns>Array der eingelesenen Reifen</returns>
-        public static void ReadFromCsv(string CsvFolder, bool IsLastImport, bool deleteDotTires)
+        public static void ReadFromCsv(string CsvFolder, bool deleteDotTires)
         {
             double result1 = -1.0;
             double result2 = -1.0;
@@ -188,16 +185,9 @@ namespace ImportableMixed
             try
             {
                 string[] all;
-                if (IsLastImport)
-                {
+               
                     //Alles aus der CSV-Datei einlesen
-                    all = File.ReadAllLines(System.IO.Path.GetDirectoryName(lastImportFileName) + "\\Export_" + System.IO.Path.GetFileNameWithoutExtension(lastImportFileName) + ".csv", Encoding.Default);
-                }
-                else
-                {
-                    //Alles aus der CSV-Datei einlesen
-                    all = File.ReadAllLines(CsvFolder + "\\" + "InputFile.csv", Encoding.Default);
-                }
+                    all = File.ReadAllLines(CsvFolder, Encoding.Default);
 
                 //Array erstellen in der perfekten größe, Überschrift wird dabei überlesen
                 Tire[] t = new Tire[all.Length - 1];
@@ -206,14 +196,8 @@ namespace ImportableMixed
                 {
                     string[] temp;
                     string line = all[i];
-                    if (IsLastImport)
-                    {
-                        temp = line.Split(WRITEDELIMITER);
-                    }
-                    else
-                    {
+
                         temp = line.Split(DELIMITER);
-                    }
 
 
                     //Die einzelnen Felder aus der CSV-Laden ins Programm
@@ -221,26 +205,20 @@ namespace ImportableMixed
 
                     //Überprüfen ob es einen Price4 gibt
                     #region Price4
-                    Double.TryParse(fill.price, out result1);
-                    Double.TryParse(fill.price4, out result2);
+                    Double.TryParse(fill.price.Replace('.',','), out result1);
+                    Double.TryParse(fill.price4.Replace('.', ','), out result2);
 
                     if (result1 <= 0)
-                    {
                         if (result2 <= 0)
                         {
                             fill = null;
                             continue;
                         }
                         else
-                        {
                             fill.price = fill.price4;
-                        }
-                    }
                     else
-                    {
                         if (result2 <= 0)
                             fill.price4 = "";
-                    }
                     #endregion
 
                     //Reifentyp herausfiltern
@@ -255,9 +233,12 @@ namespace ImportableMixed
                         continue;
                     }
                     //Falls die Artikel ID an der 0 Stelle in diesem Fall "s" ist dann handelt es sich um ein Sommer-Reifen usw...
+
+                    /*Checking of Type --------------------------------------
                     if (fill.article_id.Substring(0, 1).ToLower().Equals("s"))
                     {
                         fill.type = "PKW Sommer-Reifen";
+                        
                     }
                     else if (fill.article_id.Substring(0, 1).ToLower().Equals("w"))
                     {
@@ -306,11 +287,18 @@ namespace ImportableMixed
                         //Falls kein Reifentyp festgestellt werden konnte...Reifentype = Undefiniert
                         fill.type = "Andere";
                     }
+                    */
                     #endregion
+                    if (fill.article_id.Substring(0, 1).ToLower().Equals("w"))
+                    {
+                        fill.type = "PKW Winter-Reifen";
 
+                        t[inputedElements] = fill;
+                        inputedElements++;
+                    }
+                    else
+                        continue;
 
-                    t[inputedElements] = fill;
-                    inputedElements++;
                 }
                 if (deleteDotTires)
                 {
@@ -323,9 +311,6 @@ namespace ImportableMixed
                         }
                         temporary.Add(t[i]);
                     }
-                    if (IsLastImport)
-                        lastImp = temporary.ToArray();
-                    else
                         tires = temporary.ToArray();
                 }
                 else
@@ -335,7 +320,7 @@ namespace ImportableMixed
                     {
                         perfectSize[i] = t[i];
                     }
-                    tires = perfectSize;
+                    Tires = perfectSize;
                 }
             }
             catch (FileNotFoundException)
@@ -432,47 +417,6 @@ namespace ImportableMixed
                 Console.WriteLine("Exception: {0}", e.Message);
             }
             return null;
-        }
-
-        internal static string LastExport(string csvFolder)
-        {
-            string[] filePaths = Directory.GetFiles(csvFolder, "*.txt", SearchOption.TopDirectoryOnly);
-            string oldString = "01.01.1990";
-            for (int i = 0; i < filePaths.Length; i++)
-            {
-                string newString = System.IO.Path.GetFileNameWithoutExtension(filePaths[i]);
-
-                if (Convert.ToDateTime(newString).CompareTo(Convert.ToDateTime(oldString)) >= 1)
-                {
-                    oldString = newString;
-                    lastImportFileName = filePaths[i];
-                }
-            }
-            return System.IO.Path.GetFileName(oldString);
-        }
-
-        public static void JustChanged(bool deleteDotTire)
-        {
-            ReadFromCsv(lastImportFileName, true, deleteDotTire);
-            List<Tire> justChanged = new List<Tire>();
-            Tire[] t = CalculationPrice(lastImp);
-            justChanged = t.OfType<Tire>().ToList();
-            for (int i = 0; i < tires.Length; i++)
-            {
-                Tire act = tires[i];
-                for (int x = 0; x < lastImp.Length; x++)
-                {
-                    if (act.description.Equals(lastImp[x].description))
-                    {
-                        if (Convert.ToDouble(act.salePrice) == Convert.ToDouble(lastImp[x].salePrice) && Convert.ToInt32(act.availability) == Convert.ToInt32(lastImp[x].availability))
-                        {
-                            continue;
-                        }
-                        justChanged.Add(act);
-                    }
-                }
-            }
-            tires = justChanged.ToArray();
         }
     }
 }

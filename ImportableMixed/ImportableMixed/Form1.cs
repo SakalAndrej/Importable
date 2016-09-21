@@ -35,19 +35,17 @@ namespace ImportableMixed
         {
 
             progressBar1.Visible = true;
-            MainProgram.ReadFromCsv(folderBrowserDialog1.SelectedPath, false, rbDotTireYes.Checked);
+            MainProgram.ReadFromCsv(folderBrowserDialog1.SelectedPath,rbDotTireYes.Checked);
             progressBar1.Maximum = MainProgram.Tires.Length * 4;
             progressBar1.Value = MainProgram.Tires.Length;
             MainProgram.CheckWidth();
             progressBar1.Value += MainProgram.Tires.Length;
             MainProgram.Tires = MainProgram.CalculationPrice(MainProgram.Tires);
             progressBar1.Value += MainProgram.Tires.Length;
-            if (rbExportYes.Checked)
-                MainProgram.JustChanged(rbDotTireYes.Checked);
+           
 
-            MainProgram.Write(rbTimestampYes.Checked, folderBrowserDialog1.SelectedPath);
+            MainProgram.Write(folderBrowserDialog1.SelectedPath);
             progressBar1.Value = progressBar1.Maximum;
-            lbExportLastTime.Text = MainProgram.LastExport(folderBrowserDialog1.SelectedPath);
             lbCountFiles.Text = Convert.ToString(Directory.GetFiles(folderBrowserDialog1.SelectedPath, "*", SearchOption.TopDirectoryOnly).Length);
             Thread.Sleep(2000);
             progressBar1.Visible = false;
@@ -61,7 +59,6 @@ namespace ImportableMixed
             {
                 lbCurrentDirectory.Text = folderBrowserDialog1.SelectedPath;
                 lbCountFiles.Text = Convert.ToString(Directory.GetFiles(folderBrowserDialog1.SelectedPath, "*", SearchOption.TopDirectoryOnly).Length);
-                lbExportLastTime.Text = MainProgram.LastExport(folderBrowserDialog1.SelectedPath);
             }
 
         }

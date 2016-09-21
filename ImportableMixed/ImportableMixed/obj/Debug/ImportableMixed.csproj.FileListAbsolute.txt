@@ -7,3 +7,12 @@ c:\users\andrej\documents\visual studio 2013\Projects\ImportableMixed\Importable
 c:\users\andrej\documents\visual studio 2013\Projects\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.csproj.GenerateResource.Cache
 c:\users\andrej\documents\visual studio 2013\Projects\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.exe
 c:\users\andrej\documents\visual studio 2013\Projects\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.pdb
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\bin\Debug\ImportableMixed.exe.config
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\bin\Debug\ImportableMixed.exe
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\bin\Debug\ImportableMixed.pdb
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.csprojResolveAssemblyReference.cache
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.Form1.resources
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.Properties.Resources.resources
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.csproj.GenerateResource.Cache
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.exe
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Debug\ImportableMixed.pdb

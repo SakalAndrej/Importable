@@ -1,0 +1,8 @@
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\bin\Release\ImportableMixed.exe.config
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Release\ImportableMixed.Form1.resources
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Release\ImportableMixed.Properties.Resources.resources
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Release\ImportableMixed.csproj.GenerateResource.Cache
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\bin\Release\ImportableMixed.exe
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\bin\Release\ImportableMixed.pdb
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Release\ImportableMixed.exe
+\\Mac\Home\Desktop\Git-Repository\Importable\ImportableMixed\ImportableMixed\obj\Release\ImportableMixed.pdb
