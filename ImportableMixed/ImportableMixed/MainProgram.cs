@@ -289,7 +289,7 @@ namespace ImportableMixed
                     }
                     */
                     #endregion
-                    if (fill.article_id.Substring(0, 1).ToLower().Equals("w") && (fill.manufacturer.ToLower().Equals("tracmax") || fill.manufacturer.ToLower().Equals("riken") || fill.manufacturer.ToLower().Equals("nexen")) || fill.manufacturer.ToLower().Equals("pace") || fill.manufacturer.ToLower().Equals("toledo"))
+                    if (fill.article_id.Substring(0, 1).ToLower().Equals("w") && ((fill.manufacturer.ToLower().Equals("tracmax") || fill.manufacturer.ToLower().Equals("riken") || fill.manufacturer.ToLower().Equals("nexen") || fill.manufacturer.ToLower().Equals("pace") || fill.manufacturer.ToLower().Equals("imperial") || fill.manufacturer.ToLower().Equals("gremax") || fill.manufacturer.ToLower().Equals("greemax") || fill.manufacturer.ToLower().Equals("vredestein") || fill.manufacturer.ToLower().Equals("evergreen"))))
                     {
                         if (Int32.Parse(fill.availability) > 15)
                         {
