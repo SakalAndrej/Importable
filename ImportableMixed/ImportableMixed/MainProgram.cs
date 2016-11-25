@@ -23,8 +23,8 @@ namespace ImportableMixed
 {
     class MainProgram
     {
-        static string FILENAME = "InputFile.csv";
-        static string NEWFILENAME = "OutputFile.csv";
+        static string FILENAME = "157576_at.csv";
+        static string NEWFILENAME = "RikNexTra.csv";
         static char DELIMITER = '|';
         static char WRITEDELIMITER = ';';
         static Tire[] tires;
